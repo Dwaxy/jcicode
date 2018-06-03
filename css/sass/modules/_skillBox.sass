@@ -1,0 +1,66 @@
+@import "../mixins/the_codex"
+@import "../mixins/_variables"
+
+.skillBox-holder
+  -webkit-perspective: 1000
+  min-height: 300px
+  padding-bottom: 30px
+  padding-top: 30px
+  width: 100%
+  margin: 0 auto
+  background-color: $profileBackground
+  box-sizing: border-box
+  position: relative
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(70, 106, 135, 0.35)
+  -moz-box-shadow:    0px 0px 20px 0px rgba(70, 106, 135, 0.35)
+  box-shadow:         0px 0px 20px 0px rgba(70, 106, 135, 0.35)
+
+.skillBox-1, .skillBox-2, .skillBox-3
+  width: 200px
+  height: 230px
+  outline: 2px solid white
+  outline-offset: 5px
+  display: inline-block
+  margin: 20px
+  top: 0
+  text-align: center
+  overflow: hidden
+
+  @include smoothMove(0.5s)
+  .skillBox-content
+    h3
+      color: $textDarkBlue
+      font-family: 'Raleway', sans-serif
+      letter-spacing: 2px
+      margin: 0
+      @include padding(10px, 10px, 20px , 20px)
+      background-color: white
+      margin-bottom: 5px
+    p
+      height: auto
+      width: 99%
+      letter-spacing: 1px
+      background-color: white
+      margin: 0
+      @include padding(10px, 10px, 20px, 100px)
+
+.skillBox-1
+  -webkit-transform: translate(150px, 20px)
+  transform: translate(150px, 20px)
+.skillBox-2
+  z-index: 2
+  position: relative
+.skillBox-3
+  -webkit-transform: translate(150px, 20px)
+  transform: translate(-150px, 20px)
+
+@media screen and (max-width: 750px)
+  .skillBox-holder
+    height: auto
+    padding-bottom: 5px
+  .skillBox-3
+    transform: none
+  .skillBox-1
+    transform: none
+  .so-far-Ive-holder
+    display: none

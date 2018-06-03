@@ -1,0 +1,235 @@
+@import "../mixins/_the_codex"
+@import "../mixins/_variables"
+@import "../modules/_navPopUp"
+
+html
+  height: 100%
+  position: relative
+
+body 
+  min-height: 100%
+  background-color: #e6e6e6
+  font-family: 'Raleway', sans-serif
+  font-weight: 400
+  color: white
+  background: #0f0c29  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0f0c29, #24243e, #302b63, #24243e, #0f0c29)
+  background: linear-gradient(to right, #0f0c29, #24243e, #302b63, #24243e, #0f0c29) 
+  background-size: cover
+  background-repeat: no-repeat
+  background-attachment: fixed
+  
+.show-popUp
+  top: 0
+
+/*===== Vertical Timeline =====*/
+#timeline 
+  position: relative
+  max-width: 90%
+  width: 100%
+  margin: 0 auto
+  margin-top: -131px
+
+.center-line 
+  position: absolute
+  width: 1px
+  height: 100%
+  top: 100px
+  bottom: 0
+  left: 50%
+  margin-left: -0px
+  background: rgba(white, 0.5)
+  z-index: -1
+  overflow: hidden
+    
+.timeline-start
+  width: 100%
+  text-align: center
+  padding-top: 15%
+  h3
+    padding: 30px
+    line-height: 100px
+  
+.timeline-content
+  width: 100%
+  
+.hex-stage-1
+  padding-top: 5px
+
+.left-container,
+.right-container
+  position: fixed
+  top: 50%
+  max-width: 35%
+  width: 100%
+  height: 171.174px
+  transform: translate(0, -50%)
+  .content-left,
+  .content-right 
+    position: relative
+    width: auto
+    height: 100%
+    border-top: 1px solid $greenText
+    border-bottom: 1px solid $greenText
+    background-color: rgba(0, 0, 0, 0)
+    p 
+      z-index: 9000
+      text-align: center
+      padding: 20px 0px
+      font-weight: 300
+      color: white
+      font-size: 18px
+      line-height: 20px
+      position: relative
+      letter-spacing: 1px
+
+.left-container 
+  left: 20px
+  .content-left
+    p
+      padding-right: 20px
+      
+.right-container 
+  right: 20px
+  .content-right 
+    p
+      padding-left: 20px
+
+.you, .me
+  width: 100%
+  position: relative
+  span
+    text-align: center
+    font-size: 20px
+    font-weight: 100
+    color: rgba(255,255,255,0.5)
+    margin: 0 auto
+    display: block
+    position: absolute
+    left: 0
+    right: 0
+    margin-top: -30px
+
+.green-hex
+  &::before
+    border-bottom: 75.456px solid $greenText !important
+  &::after
+    border-top: 73.728px solid $greenText !important
+  background-color: $greenText !important
+
+.hex-stage 
+  padding-bottom: 15vh
+  .hex-stage-inner
+    +hexagon(262px, rgba(white, 0.7))
+    position: relative !important
+    top: 0
+    left: 50%
+    margin-left: -131px
+    transition: all 0.4s ease-in-out
+    &:hover
+      cursor: pointer
+    .hex-stage-content
+      +hexagon(256px, #302b63)
+      top: 2px
+      bottom: 0
+      left: 50%
+      margin-left: -128px
+      z-index: 1
+      display: flex
+      align-items: center
+      justify-content: center
+      h4
+        z-index: 900
+        display: block
+        text-align: center
+        font-weight: 100
+        font-size: 30px
+        line-height: 40px
+        color: rgba(white, 0.5)
+      p
+        display: none
+
+.end
+  //15
+  //32
+  padding-bottom: calc(15vh + 128px)
+
+.hex-stage-1
+  padding-top: 15vh
+
+/*===== // Vertical Timeline =====*/
+
+/*===== Resonsive Vertical Timeline =====*/
+@media only screen and (max-width: 920px) 
+  .show-popUp
+    margin: 0 auto
+    right: 0
+    
+  .end
+    padding-bottom: calc(15vh + 170px)
+  
+  #timeline .timeline-start,
+  #timeline .timeline-end 
+    margin: 0
+  
+  .center-line 
+    display: none
+  
+  .hex-stage 
+    margin-left: 0
+    left: 20px
+  
+  .hex-stage-inner
+    left: -80px !important
+    +rotate(-119deg)
+    .hex-stage-content
+      h4
+        font-size: 25px !important
+        margin: 0 auto
+        padding-top: 130px
+        +rotate(-331deg)
+          
+  .left-container,
+  .right-container 
+    max-width: 100%
+    float: none
+    min-height: 53px
+    right: 0
+    left: 0
+    p
+      margin-top: 50px
+      margin-bottom: 50px
+    
+  .left-container
+    top: 27%
+    div
+      border-top: 0px solid white !important
+      border-bottom: 1px solid rgba(33, 226, 133, 0.69) !important
+    
+  .right-container
+    top: 70%
+    div
+      border-bottom: 0px solid white !important
+      border-top: 1px solid rgba(33, 226, 133, 0.69) !important
+  
+  .content-left-container 
+    margin-bottom: 20px
+  
+  .content-left,
+  .content-right 
+    padding: 10px 5px
+    min-height: 65px
+    p
+      padding: 0
+      font-size: 15px !important
+  
+  .content-right:before 
+    display: none
+  
+
+@media only screen and (max-width: 400px) 
+  p 
+    margin: 0
+
+  
+/*===== // Resonsive Vertical Timeline =====*/

@@ -1,0 +1,82 @@
+@import "../mixins/_variables"
+@import "../mixins/the_codex"
+
+form
+  min-width: 300px
+  display: inline-block
+  padding: 20px
+  margin: 0 auto
+  position: relative
+  h1
+    width: 100%
+
+label
+  display: block
+  position: relative
+  width: auto
+  margin-top: -44px
+  margin-left: 5px
+  padding: 20px 0px
+  box-sizing: border-box
+  color: white
+  letter-spacing: 2px
+  transform-origin: left center
+  transition: all 0.25s cubic-bezier(.53,.01,.35,1.5)
+  -webkit-transition: all 0.25s cubic-bezier(.53,.01,.35,1.5)
+
+.input-holder
+  position: relative
+  width: 100%
+  padding: 10px 0
+  margin-top: -10px
+  &:first-of-type
+    padding-top: 30px
+  input
+    background-color: transparent
+    display: block
+    
+    
+form textarea
+  width: 100%
+  height: 100px
+  max-width: 300px
+  max-height: 200px
+  border-radius: 10px
+  outline: none
+  font-size: 10px
+  
+  
+input[type="text"], input[type="email"]
+  min-width: 300px
+  border-radius: 50px
+  border: 1px solid white
+  margin: 0 auto
+  font-size: 15px
+  color: white
+  padding: 5px
+  transition: all 0.25s cubic-bezier(.53,.01,.35,1.5)
+  -webkit-transition: all 0.25s cubic-bezier(.53,.01,.35,1.5)
+  display: inline-block
+  &:focus
+    outline: none
+    margin-top: 32px
+  &:focus ~ label
+    transform: translate( 0 , -35px )
+
+input:not([value=""])
+  background-color: $menuGreen
+
+input[type="submit"]
+  font-family: 'Raleway', sans-serif
+  font-size: 15px
+  letter-spacing: 2px
+  background-color: transparent
+  @include smoothMove(0.1s)
+  outline: none
+  color: white
+  border: 1px solid white
+  padding: 10px
+  width: (100% / 3)
+  margin-top: -10px
+  &:focus
+    background-color: $menuGreen

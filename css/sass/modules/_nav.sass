@@ -1,0 +1,73 @@
+@import "../mixins/_variables.sass"
+//------------ nav sass ----------------//
+a:link, a:visited
+  text-decoration: none
+  color: black
+
+.menu
+  white-space: nowrap
+  overflow: hidden
+
+.menuHolder
+  z-index: 1000000000
+  display: none
+  overflow: hidden
+  position: fixed
+  display: inline-block
+  top: 0
+  right: 0
+  width: 40px
+  padding: 2px 0 0
+  background-color: rgba(245, 245, 245, 0.77)
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(70, 106, 135, 0.65)
+  -moz-box-shadow:    0px 0px 30px 0px rgba(70, 106, 135, 0.65)
+  box-shadow:         0px 0px 30px 0px rgba(70, 106, 135, 0.65)
+  text-align: right
+  transition: all 1s ease-in-out
+  max-height: 36px
+  ul
+    margin: 0
+    padding: 0
+  li:hover
+    a
+      cursor: pointer
+      transition: all 0.1s ease-in-out
+      color: $menuGreen
+  li, #menuBtnOn
+    transition: all 0.1s ease
+    display: inline-block
+    padding: 10px
+    line-height: 12px
+    font-family: 'Quicksand', sans-serif
+    border-right: 1px solid rgba(37, 37, 37, 0.28)
+    a:after
+      display: block
+      content: ""
+      border-bottom: solid 3px $menuGreen
+      transform: scaleX(0)
+      transition: transform 250ms ease-in-out
+      margin-top: 10px
+
+#menuBtnOn
+  font-size: 30px
+  float: left
+
+#myName
+  display: inline-block
+  padding: 10px
+  line-height: 12px
+  font-family: 'Quicksand', sans-serif
+  float: left
+  margin-left: 40px
+  overflow: hidden
+
+#menuBtnOff, #menuBtnOn
+  font-family: 'Raleway', sans-serif
+  font-weight: 100
+  font-size: 27px
+  transition: all 0.3s ease
+  cursor: pointer
+  color: black
+
+.menuHolder li:hover a:after
+  transform: scaleX(1)

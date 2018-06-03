@@ -1,0 +1,78 @@
+@import "../mixins/_variables"
+@import "../mixins/the_codex"
+
+.shown
+  top: -30px !important
+  height: 300px !important
+  width: 268px !important
+  @include transition(all 400ms ease-in-out)
+
+#hexHolder
+  max-width: 480px !important
+  height: 105px
+  width: 150px
+  display: block
+  position: absolute
+  margin: 0 auto
+  @include abs-pos($top: -5px, $right: 0, $left: 0)
+  @include transition(all 400ms ease-in-out)
+
+.hexLink
+  display: inline-block
+
+.hex
+  z-index: 3
+  cursor: pointer
+  margin: 8px
+  display: inline-block
+  position: absolute !important
+  transition: background 0.3s ease-in-out
+  +hexagon(130px, rgba(white, 0.7))
+  .innerHex
+    z-index: 4
+    position: absolute !important
+    margin: 0 auto !important
+    @include abs-pos(2px, 0, 0, 0)
+    transition: all 0.4s ease-in-out
+    +hexagon(124px, white)
+    p
+      position: relative
+      height: 50px
+      top: 25px
+    
+.hex:hover
+  background-color: #21e285 !important
+  &::before
+    border-bottom: 37.44px solid #21e285 !important
+  &::after
+    border-top: 37.44px solid #21e285 !important
+    
+    
+.workWithYou
+  margin: 0 auto
+  bottom: 9px
+  left: 0
+  right: 0
+  .data
+    top: 14px !important
+  
+.code
+  margin: 80px 0px -100px 0px !important
+  left: 0
+  
+.aboutMe
+  margin: 80px 0px -100px 0px !important
+  right: 0
+
+.me
+  cursor: pointer
+  margin: 0 auto !important
+  position: relative
+  z-index: 100
+  top: -116px
+  +hexagon(200px, rgba(245, 245, 245, 0.69))
+  .arrow
+    +hexagon(105px, rgba(white, 0), 3px solid #21e285)
+    margin: 0 auto !important
+    border: 0 !important
+    padding-top: 69px

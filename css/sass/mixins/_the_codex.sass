@@ -1,0 +1,291 @@
+=border-radius($value)
+  -webkit-border-radius: $value
+  -moz-border-radius: $value
+  border-radius: $value
+
+// NOTE: this is my own personal library for sass. Some tools in here may or may not be used. Some of these I pulled from the web, //
+// most I made myself. This file with sass makes for *pure* DRY programming //
+
+// welcome to Joels ancient codex of code. Feel free to look around - you might find something you like//
+// We have the finest weapons and armor
+// Sales with up to 20% off are on mondays//
+
+//---------------------
+//Take this, its dangerous out there!
+//---------------------
+
+//------------------------- rotate things
+=rotate($deg)
+  -webkit-transform: rotate($deg)
+  -moz-transform: rotate($deg)
+  -ms-transform: rotate($deg)
+  -o-transform: rotate($deg)
+  transform: rotate($deg)
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=$deg)
+
+//------------------------ move things with translate
+=translate-move($left: 0, $down: 0)
+  -ms-transform: translate($left, $down)
+  -webkit-transform: translate($left, $down)
+  transform: translate($left, $down)
+
+//------------------------- center vertically
+=v-center($top)
+  position: relative
+  top: $top
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+//-------------------------- box shadow
+=box-shadow($x, $y, $offset, $color, $inset: false)
+  $ie-color: ie-hex-str($color)
+
+  @if $inset
+    -webkit-box-shadow: inset $x $y $offset $color
+    box-shadow: inset $x $y $offset $color
+  @else
+    -webkit-box-shadow: $x $y $offset $color
+    box-shadow: $x $y $offset $color
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$ie-color}')
+
+//--------------------------- box-sizing
+=box-sizing($type)
+  -webkit-box-sizing: $type
+  -moz-box-sizing: $type
+  box-sizing: $type
+
+//---------------------------  padding
+=padding($left: 0, $right: 0, $top: 0, $bottom: 0)
+  padding-left: $left
+  padding-right: $right
+  padding-top: $top
+  padding-bottom: $bottom
+
+//---------------------------  transition
+=smoothMove($speed: 0.5)
+  -webkit-transition: all $speed, -webkit-transform $speed
+  transition: all $speed, transform $speed ease-in-out
+
+=transition($args...)
+  -webkit-transition: $args
+  -moz-transition: $args
+  -ms-transition: $args
+  -o-transition: $args
+  transition: $args
+
+//--------------------------- absolute position
+=abs-pos($top: auto, $right: auto, $bottom: auto, $left: auto)
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+  position: absolute
+
+//--------------------------- apsolute center
+=abs-center
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+
+//--------------------------- opacity
+=opacity($opacity)
+  opacity: $opacity
+
+  $opacity-ie: $opacity * 100
+
+  filter: alpha(opacity = $opacity-ie)
+
+//----------------------------- tooltip alert
+=alerted
+  &:before
+    content: ''
+    position: absolute
+    top: 6px
+    right: 6px
+    height: 8px
+    width: 8px
+    border-radius: 10px
+    background-color: gold
+
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    height: 20px
+    width: 20px
+    border-radius: 20px
+
+@keyframes alertMe
+  // -vendor prefixes omitted for brevity, but should be used in production
+  from
+    border-width: 3px
+    border-color: gold
+
+  to
+    border-width: 0
+    border-color: rgba(gold, 0.1)
+
+// @include triangle within a pseudo element and add positioning properties (ie. top, left)
+// $direction: up, down, left, right
+
+=triangle($direction, $size: 6px, $color: #222)
+  content: ''
+  display: block
+  position: absolute
+  height: 0
+  width: 0
+
+  @if $direction == "up"
+    border-bottom: $size solid $color
+    border-left: (1 / 2 * $size) solid transparent
+    border-right: (1 / 2 * $size) solid transparent
+  @else if $direction == "down"
+    border-top: $size solid $color
+    border-left: (1 / 2 * $size) solid transparent
+    border-right: (1 / 2 * $size) solid transparent
+  @else if $direction == "left"
+    border-top: (1 / 2 * $size) solid transparent
+    border-bottom: (1 / 2 * $size) solid transparent
+    border-right: $size solid $color
+  @else if $direction == "right"
+    border-top: (1 / 2 * $size) solid transparent
+    border-bottom: (1 / 2 * $size) solid transparent
+    border-left: $size solid $color
+
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+
+$breakpoints: ("small": 767px, "medium": 992px, "big": 1000px, "large": 1200px, "extra-large": 1500px, "huge": 1800px) !default
+
+=respond-to($breakpoint)
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint)
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint))
+      @content
+  @else
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Available breakpoints are: #{map-keys($breakpoints)}."
+
+=resize-within($breakpoint)
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint)
+    // Prints a media query based on the value
+    @media (max-width: map-get($breakpoints, $breakpoint))
+      @content
+  @else
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. " + "Available breakpoints are: #{map-keys($breakpoints)}."
+
+// Makes a CSS hexagon! based off of http://csshexagon.com/
+// Demo: http://sassmeister.com/gist/98fcf3ce163a97d2ef7e
+=hexagon($size, $color, $border: 0)
+  position: relative
+  width: $size
+  height: $size * 0.577
+  background-color: $color
+  margin: ($size * 0.288) 0
+  border-left: $border
+  border-right: $border
+
+  &:before,
+  &:after
+    content: ""
+    position: absolute
+
+    @if $border == 0
+      width: 0
+      left: 0
+      border-left: ($size / 2) solid transparent
+      border-right: ($size / 2) solid transparent
+    @else
+      z-index: 1
+      width: $size * 0.707
+      height: $size * 0.707
+      -webkit-transform: scaleY(0.5774) rotate(-45deg)
+      -ms-transform: scaleY(0.5774) rotate(-45deg)
+      transform: scaleY(0.5774) rotate(-45deg)
+      background-color: inherit
+      left: $size * 0.129
+
+  &:before
+    @if $border == 0
+      bottom: 100%
+      border-bottom: ($size * 0.288) solid $color
+    @else
+      top: -($size * 0.353)
+      border-top: $border
+      border-right: $border
+
+  &:after
+    @if $border == 0
+      top: 100%
+      width: 0
+      border-top: ($size * 0.288) solid $color
+    @else
+      bottom: -($size * 0.353)
+      border-bottom: $border
+      border-left: $border
+      
+=octagon($width: 100px, $height: 100px, $background-color: transparent)
+  width: $width
+  height: $height*0.42
+  background: $background-color
+  position: relative
+  &:before,
+  &:after
+    content: ""
+    position: absolute
+    left: 0
+    width: $width*0.42
+    height: 0
+    border-left: $width*0.29 solid transparent
+    border-right: $width*0.29 solid transparent
+    &:before
+      top: -$height*0.29
+      border-bottom: $height*0.29 solid $background-color
+    &:after
+      bottom: -$height*0.29
+      border-top: $height*0.29 solid $background-color
+
+//--------------------------------- animate breathing
+=an-breathing
+  @-webkit-keyframes breathing
+    0%
+      -webkit-transform: scale(0.9)
+      transform: scale(0.9)
+
+    25%
+      -webkit-transform: scale(1)
+      transform: scale(1)
+
+    60%
+      -webkit-transform: scale(0.9)
+      transform: scale(0.9)
+
+    100%
+      -webkit-transform: scale(0.9)
+      transform: scale(0.9)
+
+  @keyframes breathing
+    0%
+      -webkit-transform: scale(0.9)
+      -ms-transform: scale(0.9)
+      transform: scale(0.9)
+
+    25%
+      -webkit-transform: scale(1)
+      -ms-transform: scale(1)
+      transform: scale(1)
+
+    60%
+      -webkit-transform: scale(0.9)
+      -ms-transform: scale(0.9)
+      transform: scale(0.9)
+
+    100%
+      -webkit-transform: scale(0.9)
+      -ms-transform: scale(0.9)
+      transform: scale(0.9)
