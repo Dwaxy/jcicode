@@ -158,7 +158,9 @@
     <footer id="footer">
       <div class="form-holder">
         <h1>Contact Me:</h1>
-        <form id="form" action="https://formspree.io/jci.code@gmail.com" method="POST">
+        
+        <!-- <form id="form" action="https://formspree.io/jci.code@gmail.com" method="POST"> -->
+        <form name="contact" method="POST" netlify>
           <div class="input-holder">
             <label for="text"> Name
               <label>
@@ -167,13 +169,14 @@
           <div class="input-holder">
             <label for="text"> Email
               <label>
-                <input id="text" type="email" name="_replyto" required onkeyup="this.setAttribute('value', this.value);" value="">
+                <input id="text" type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="">
           </div>
           <div class="input-holder">
             <textarea style="background: transparent; background: transparent; border: 1px solid white; color: white; font-size: 15px;" class="form-main-input" name="name" rows="8" cols="80" placeholder=" Your Message" required></textarea>
           </div>
           <input type="submit" value="Send">
         </form>
+        
       </div>
       <div class="email-holder">
         <h1>Or email me at:</h1>
